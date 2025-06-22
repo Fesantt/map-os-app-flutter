@@ -7,7 +7,7 @@ class AboutAppPage extends StatelessWidget {
   const AboutAppPage({super.key});
 
   Future<void> _launchSupportUrl() async {
-    final Uri url = Uri.parse('https://github.com/ramonsilva20/mapos');
+    final Uri url = Uri.parse('https://map-os.github.io/map-os-app-flutter');
     if (!await launchUrl(
       url,
       mode: LaunchMode.externalApplication,
@@ -24,7 +24,6 @@ class AboutAppPage extends StatelessWidget {
       backgroundColor: isDark ? const Color(0xFF0D1117) : const Color(0xFFF6F8FA),
       appBar: AppBar(
         elevation: 0,
-        // backgroundColor: Colors.transparent,
         foregroundColor: isDark ? Colors.white : Colors.black87,
         title: const Text('Sobre o App', style: TextStyle(fontWeight: FontWeight.w600)),
       ),
@@ -168,10 +167,7 @@ class AboutAppPage extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 20),
-
-            // Card de Desenvolvedores
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Container(
@@ -238,13 +234,13 @@ class AboutAppPage extends StatelessWidget {
                                 color: isDark ? Colors.white : Colors.black87,
                               ),
                             ),
-                            Text(
-                              'Flutter Mobile Developer',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: isDark ? Colors.grey[400] : Colors.grey[600],
-                              ),
-                            ),
+                            // Text(
+                            //   'Flutter Mobile Developer',
+                            //   style: TextStyle(
+                            //     fontSize: 12,
+                            //     color: isDark ? Colors.grey[400] : Colors.grey[600],
+                            //   ),
+                            // ),
 
                           ],
                         ),
@@ -270,13 +266,13 @@ class AboutAppPage extends StatelessWidget {
                                 color: isDark ? Colors.white : Colors.black87,
                               ),
                             ),
-                            Text(
-                              'Back-end API Developer',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: isDark ? Colors.grey[400] : Colors.grey[600],
-                              ),
-                            ),
+                            // Text(
+                            //   'Back-end API Developer',
+                            //   style: TextStyle(
+                            //     fontSize: 12,
+                            //     color: isDark ? Colors.grey[400] : Colors.grey[600],
+                            //   ),
+                            // ),
 
                           ],
                         ),

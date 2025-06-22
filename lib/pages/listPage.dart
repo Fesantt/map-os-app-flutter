@@ -10,7 +10,7 @@ class ItemListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Items received: ${items.length}");
+    // print("Items received: ${items.length}");
 
     return Scaffold(
       appBar: AppBar(
