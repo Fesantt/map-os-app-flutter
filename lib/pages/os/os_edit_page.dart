@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mapos_app/api/apiConfig.dart';
 import 'package:mapos_app/pages/os/tabs/detalhes_tab.dart';
 import 'package:mapos_app/pages/os/tabs/descontos_tab.dart';
 import 'package:mapos_app/pages/os/tabs/servicos_tab.dart';
 import 'package:mapos_app/pages/os/tabs/produtos_tab.dart';
 import 'package:mapos_app/pages/os/tabs/anexos_tab.dart';
 import 'package:mapos_app/pages/os/tabs/anotacoes_tab.dart';
-import 'package:mapos_app/pages/os/os_page.dart';
 import 'package:mapos_app/controllers/os/osController.dart';
+import 'package:mapos_app/pages/os/os_view_page.dart';
 
 class EditarOsPage extends StatefulWidget {
   final int idOs;
@@ -29,13 +30,20 @@ class _EditarOsPageState extends State<EditarOsPage> with SingleTickerProviderSt
   List<Widget> get _tabPages {
     return [
       DetalhesTab(ordemServico: ordemServico),
-      DescontosTab(),
-      ServicosTab(),
-      ProdutosTab(),
+      DescontosTab(ordemServico: ordemServico),
+      ServicosTab(
+        ordemServico: ordemServico,
+        onAtualizar: _getOs,
+      ),
+      ProdutosTab(
+        ordemServico: ordemServico,
+        onAtualizar: _getOs,
+      ),
       AnexosTab(ordemServico: ordemServico),
-      AnotacoesTab()
+
     ];
   }
+
 
   final List<IconData> _tabIcons = [
     Icons.info,
@@ -43,14 +51,14 @@ class _EditarOsPageState extends State<EditarOsPage> with SingleTickerProviderSt
     Icons.build,
     Icons.shopping_cart,
     Icons.attachment,
-    Icons.note
+
   ];
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: _tabPages.length, vsync: this);
-    _tabController!.addListener(_handleTabSelection);
+    _tabController?.addListener(_handleTabSelection);
     _getOs();
   }
 
@@ -69,8 +77,7 @@ class _EditarOsPageState extends State<EditarOsPage> with SingleTickerProviderSt
       setState(() {
         ordemServico = data;
         _isLoading = false;
-        _tabController = TabController(length: _tabPages.length, vsync: this);
-        _tabController!.addListener(_handleTabSelection);
+
       });
     } catch (e) {
       print("Erro ao buscar a ordem de serviço: $e");
@@ -108,13 +115,16 @@ class _EditarOsPageState extends State<EditarOsPage> with SingleTickerProviderSt
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
+    final int idOs = int.parse(ordemServico!['idOs']);
+
     return Scaffold(
       appBar: AppBar(
         actionsIconTheme: IconThemeData(color: Colors.white),
         title: Text(
-          'Editar OS',
+          'Editando a OS N° ${ordemServico!['idOs']}',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Color(0xff333649),
@@ -127,7 +137,7 @@ class _EditarOsPageState extends State<EditarOsPage> with SingleTickerProviderSt
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => OrdemServicoList()),
+              MaterialPageRoute(builder: (context) => VisualizarOrdemServicoPage(idOrdemServico: idOs)),
             );
           },
         ),

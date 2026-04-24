@@ -2,6 +2,7 @@ on:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
 name: Build Release APK
 jobs:
   build:
@@ -12,14 +13,13 @@ jobs:
     - uses: actions/setup-java@v1
       with:
         java-version: '19.x'
-    - uses: subosito/flutter-action@v1
+    - uses: subosito/flutter-action@v2
       with:
         channel: stable
-        flutter-version: 3.22.2
     - run: flutter pub get
     - run: flutter build apk --release --split-per-abi
     - name: Push APK to Releases
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "build/app/outputs/apk/debug/*.apk"
+        artifacts: "build/app/outputs/apk/release/*.apk"
         token: ${{ secrets.TOKEN }}

@@ -5,6 +5,8 @@ import 'package:shimmer/shimmer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mapos_app/pages/os/os_view_page.dart';
 
+import 'os_add_page.dart';
+
 class OrdemServicoList extends StatefulWidget {
   @override
   _OrdemServicoListState createState() => _OrdemServicoListState();
@@ -26,15 +28,15 @@ class _OrdemServicoListState extends State<OrdemServicoList> {
   bool showFilters = false;
 
   final Map<String, Color> statusColors = {
-    'Orçamento': Color(0xffccb27f)!,
-    'Aberto': Color(0xff00cc00)!,
-    'Faturado': Color(0xffb166fd)!,
-    'Negociação': Color(0xffadb304)!,
-    'Em Andamento': Color(0xff436ded)!,
-    'Finalizado': Color(0xff225566)!,
-    'Cancelado': Colors.red!,
-    'Aguardando Peças': Color(0xfffd7e00)!,
-    'Aprovado': Color(0xff7f7f7f)!,
+    'Orçamento': Color(0xffccb27f),
+    'Aberto': Color(0xff00cc00),
+    'Faturado': Color(0xffb166fd),
+    'Negociação': Color(0xffadb304),
+    'Em Andamento': Color(0xff436ded),
+    'Finalizado': Color(0xff225566),
+    'Cancelado': Colors.red,
+    'Aguardando Peças': Color(0xfffd7e00),
+    'Aprovado': Color(0xff7f7f7f),
   };
 
   @override
@@ -145,11 +147,10 @@ class _OrdemServicoListState extends State<OrdemServicoList> {
               children: [
                 OutlinedButton.icon(
                   onPressed: () {
-                    // Navegar para a página de adicionar cliente
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => AdicionarClientePage()),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EmDesenvolvimentoPage()),
+                    );
                   },
                   icon: Icon(Icons.add),
                   label: Text('Adicionar'),
